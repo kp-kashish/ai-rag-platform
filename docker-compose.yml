@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: rag_postgres
+    environment:
+      POSTGRES_USER: rag
+      POSTGRES_PASSWORD: rag
+      POSTGRES_DB: ragdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    container_name: rag_phoenix
+    ports:
+      - "6006:6006"
+
+volumes:
+  postgres_data:
