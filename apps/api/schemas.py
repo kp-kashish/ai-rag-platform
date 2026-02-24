@@ -22,3 +22,14 @@ class ChunkOut(BaseModel):
     document_id: int
     page: Optional[int] = None
     text: str
+    
+class SearchRequest(BaseModel):
+    query: str
+    top_k: int = 3
+
+class SearchResult(BaseModel):
+    id: int
+    document_id: int
+    page: Optional[int]
+    text: str
+    score: float

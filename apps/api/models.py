@@ -1,6 +1,7 @@
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import String, Text, ForeignKey, Integer
 from typing import List, Optional
+from pgvector.sqlalchemy import Vector
 
 class Base(DeclarativeBase):
     pass
@@ -22,9 +23,10 @@ class Chunk(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     document_id: Mapped[int] = mapped_column(ForeignKey("documents.id"), nullable=False)
 
-    # Where this chunk came from (useful for citations later)
     page: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
 
     text: Mapped[str] = mapped_column(Text, nullable=False)
+
+    embedding: Mapped[Optional[list[float]]] = mapped_column(Vector(384), nullable=True)
 
     document: Mapped["Document"] = relationship(back_populates="chunks")

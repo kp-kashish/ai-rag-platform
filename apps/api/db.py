@@ -23,7 +23,10 @@ def check_pgvector() -> bool:
     return True
 
 def create_tables() -> None:
-    """Create SQL tables if they don't exist."""
+    with engine.connect() as conn:
+        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
+        conn.commit()
+
     Base.metadata.create_all(bind=engine)
     
 def get_db():
