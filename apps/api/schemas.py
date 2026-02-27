@@ -33,3 +33,18 @@ class SearchResult(BaseModel):
     page: Optional[int]
     text: str
     score: float
+    
+class RagRequest(BaseModel):
+    question: str
+    top_k: int = 3
+
+class RagSource(BaseModel):
+    chunk_id: int
+    document_id: int
+    page: Optional[int] = None
+    text_preview: str
+    score: float
+
+class RagResponse(BaseModel):
+    answer: str
+    sources: list[RagSource]

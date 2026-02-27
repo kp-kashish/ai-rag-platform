@@ -16,3 +16,7 @@ node_modules/
 
 # Docker volume
 postgres_data/
+
+*.db
+*.sqlite3
+*.log

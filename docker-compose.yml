@@ -16,6 +16,8 @@ services:
     container_name: rag_phoenix
     ports:
       - "6006:6006"
+      - "4317:4317"   # OTLP gRPC (optional)
+      - "4318:4318"   # OTLP HTTP ✅ needed for our exporter
 
 volumes:
   postgres_data:

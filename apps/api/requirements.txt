@@ -6,3 +6,6 @@ pdfplumber
 python-multipart
 sentence-transformers
 pgvector
+requests
+grpcio
+opentelemetry-exporter-otlp-proto-grpc
